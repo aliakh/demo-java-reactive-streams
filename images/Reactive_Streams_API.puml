@@ -1,0 +1,36 @@
+@startuml
+
+scale 1.0
+
+set namespaceSeparator none
+
+skinparam ClassBackgroundColor white
+skinparam ClassBorderColor black
+skinparam CircledCharacterFontStyle normal
+
+interface Publisher<R> {
++ void subscribe(Subscriber<? super R> s)
+}
+
+interface Subscriber<T> {
++ void onSubscribe(Subscription s)
++ void onNext(T item)
++ void onError(Throwable t)
++ void onComplete()
+}
+
+interface Subscription {
++ void request(long n)
++ void cancel()
+}
+
+interface Processor<T, R> {
+}
+
+Publisher <|-- Processor
+Subscriber <|-- Processor
+
+Publisher .> Subscriber
+Subscriber .> Subscription
+
+@enduml

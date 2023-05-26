@@ -1,0 +1,12 @@
+scale 1.2
+
+!pragma teoz true
+
+skinparam defaultFontName Source Sans Pro
+skinparam sequenceMessageAlign center
+skinparam participantBackgroundColor #white
+skinparam noteBackgroundColor #white
+skinparam sequenceGroupBackgroundColor #white
+skinparam participantPadding 10
+
+hide footbox

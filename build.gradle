@@ -1,0 +1,26 @@
+plugins {
+	id 'java'
+}
+
+group = 'demo'
+version = '1.0.0-SNAPSHOT'
+sourceCompatibility = '17'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.reactivestreams:reactive-streams:1.0.4'
+	implementation 'org.slf4j:slf4j-api:1.7.30'
+	implementation 'ch.qos.logback:logback-classic:1.2.3'
+
+	testImplementation 'org.reactivestreams:reactive-streams-tck:1.0.4'
+	testImplementation 'org.reactivestreams:reactive-streams-tck-flow:1.0.4'
+	testImplementation 'org.testng:testng'
+}
+
+tasks.named('test') {
+	useTestNG()
+	maxHeapSize = "16g"
+}

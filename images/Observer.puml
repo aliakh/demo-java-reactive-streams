@@ -1,0 +1,21 @@
+@startuml
+!include sequence_diagram_header.iuml
+
+skinparam participantPadding 20
+
+participant Observable
+participant Observer
+
+Observer ->>(10) Observable : addObserver()
+
+Observable ->>(10) Observer : update(T)
+Observable ->>(10) Observer : update(T)
+Observable ->>(10) Observer : update(T)
+
+alt
+    Observable -->>(10) Observer : error
+else
+    Observer ->>(10) Observable : deleteObserver()
+end
+
+@enduml

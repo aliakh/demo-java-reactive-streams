@@ -1,0 +1,14 @@
+@startuml
+!include sequence_diagram_header.iuml
+
+skinparam participantPadding 50
+
+participant Target
+participant Caller
+
+Caller ->>(10) Target : next(long)
+Target ->>(10) Caller : value
+Target ->>(10) Caller : value
+Target ->>(10) Caller : value
+
+@enduml

@@ -1,0 +1,31 @@
+@startuml
+!include sequence_diagram_header.iuml
+
+skinparam participantPadding 10
+
+participant Publisher
+participant Subscription
+participant Subscriber
+
+Subscriber ->>(10) Publisher : subscribe(Subscriber)
+Publisher ->>(10) Subscription : new Subscription()
+Publisher ->>(10) Subscriber : onSubscribe(Subscription)
+
+loop until completed
+    Subscriber ->>(10) Subscription : request(long)
+    Subscription -->>(10) Publisher
+    Publisher ->>(10) Subscriber : onNext(T)
+    Publisher ->>(10) Subscriber : onNext(T)
+    Publisher ->>(10) Subscriber : onNext(T)
+
+    alt successful completion
+        Publisher ->>(10) Subscriber : onComplete()
+    else erroneous completion
+        Publisher ->>(10) Subscriber : onError(Throwable)
+    else cancellation
+        Subscriber ->>(10) Subscription : cancel()
+        Subscription -->>(10) Publisher
+    end
+end
+
+@enduml
